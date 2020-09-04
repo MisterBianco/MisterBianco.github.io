@@ -34,7 +34,7 @@ jobs:
 
       - name: node pull
         run: |
-          yarn add -D @babel/cli @babel/core @babel/preset-env browserslist clipboard cssnano postcss-cli postcss-import postcss-mixins postcss-nested postcss-preset-env postcss-url
+          yarn install
 
       - name: Build
         run: hugo --minify
