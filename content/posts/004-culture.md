@@ -138,7 +138,7 @@ Here is a rapid fire and somewhat sensationalist list of warning signs:
 - Tenure related promotions (ie a promotion every two years)
 - hero culture
 - siloed team responsibilities
-- "we are like a family here" - typically code for we intent to abuse and manipulate you
+- "we are like a family here" - typically code for we intend to abuse and manipulate you
 - gossip channels and grapevines - this perpetuates a lack of trust all the way up the chain
 - Fear based management tactics
 - Bad pay or high discrepancy among positional pay
