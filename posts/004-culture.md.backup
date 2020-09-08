@@ -1,0 +1,146 @@
++++
+slug="culture"
+title = "Culture Shifting"
+description = "The process of shifting a culture"
+date = 2020-09-03T03:00:00+00:00
++++
+
+## The process of shifting a culture
+
+This subject has so much literature that it may seem arrogant to think
+myself in any way qualified to write on culture. While there are certainly 
+smarter people leaders, thinkers and engineers than I who have tackled this 
+issue, I hope to throw my own thoughts into the polluted pool and see what 
+sticks.
+
+> Entering the realm of opinion
+
+### Identifying the current culture
+
+I have worked at different outfits that have each spoken of their culture 
+using pithy and abstract values like "honesty", "courage", "integrity" and
+while I am glad a C level executive is pleased with his work defining his 
+companies 5-13 core principles/values/belief etc. Lets address the core 
+tenets that I believe to be the most important to software development.
+
+- trust
+- collaboration
+- high-functioning
+
+> I am obviously over-simplifying and much more advanced literature might find my analysis
+> comic, but these are my principles that are easy to identify and quickly indicate 
+> the state of a culture.
+
+Identifying the current state is relatively simple and without being too 
+prescriptive I have some general guidance on quick and easy tricks to discern 
+your status. 
+
+There exists no checklist style approach, that I am aware of at least, 
+that can accurately gauge a culture and trying to identify "stages" of a culture is
+a fools errand in my opinion. Often we find that we struggle with certain things
+throughout different parts of our organization. As an example, our infrastructure teams
+absolutely do not trust the developers. While this is obviously not good, when you consider 
+why, which is that engineers have historically been unable to maintain their own 
+infrastructure without huge amounts of help from the infra teams, they elected to remove the 
+problem and centralize everything related to infrastructure. This represents a compounded
+problem. 1). We are not devops, our developers are not engineers and can not handle deployments.
+2). The teams are not high functioning, and as a result there exists a palatable lack of trust.
+
+Who can blame the infrastructure team? They don't want to be blamed for the failures of non 
+high functioning teams. Thus they made the simple choice to remove the issue from the 
+developers. This has been and continues to be a challenge to undo as we attempt to migrate 
+to a more devops like organization.
+
+Lets move on to contrasting our current station against our previously listed tenets of culture.
+
+#### Trust
+
+> Can I do everything I need to get my job done without the aid of others with more access?
+
+This isn't necessarily meaning to ask that "if I wanted to delete our production 
+database could I?" But rather, would you be able to commit code to another teams 
+project if you saw something that you could improve? Do you have the ability to 
+modify docs that you didn't write that are out of date? Can you fulfill the responsibilities of 
+your job as defined by your job description without a high degree of run-around?
+
+> Can I improve the organizations docker images if they are grotesquely bloated? - me everyday
+
+Chances are the answer is no, from my personal experience many companies engage in the principle 
+of least privilege. These two principles are often in conflict. The principle of engineer trust 
+and least privilege. My advice is to always air on the side of trust. There is a movement that 
+has mostly originated from Netflix of "radical trust." [Here](https://www.youtube.com/watch?v=UTKIT6STSVM)
+is a link to a great talk by Dave Hahn from Netflix that covers radical trust and how 
+you will have detractors who may say, "But a junior engineer will break everything" and he counters that this has never happened at Netflix. 
+
+Whether you want to implement one, the other or something in between is up to the organization.
+Do whats right for your engineers skill levels but don't let the processes get in the way of the 
+business objectives and if you must rely on processes, **PLEASE MAKE THEM PUBLIC**
+
+> ""A process is only useful if it is used and it is only used if it is widely known." -- me just now.
+
+#### Collaboration
+
+> Are other engineers going to view me as a threat if I am tasked with aiding there team?
+
+If you have ever tried to aid someone who refused your help, you can understand the issue 
+present here. There is no simple mechanism to fix this and the crux of this issue lies in 
+a certain level of distrust across team or other organizational boundaries. You may argue 
+that this value is the same as the first but I argue that it is different in that you can 
+trust your team but refuse to collaborate with others. Often the refusal of aid is a 
+derivative of self-grandizing and arrogance of "who is this newb coming to tell me what to do 
+and how to do it?" This is a somewhat common reaction to anything we view as a threat. We 
+all experience it to some degree, after all we are emotional creatures. Think about when you 
+have been profoundly proud of an accomplishment or success and your success has made others
+feel threatened or even more poignant, when someones success has made you feel threatened. 
+It isn't enough to be aware of this natural response, we have to actively engage to destroy it.
+
+My mentor gave me great advice on dealing with these incidents. When someone or some team that
+you are tasked with working on is "dog piling" you just ask them "this has seemed to cross the
+boundaries of collaboration and is becoming too personal. I want whats best and to provide 
+an optimal solution, what is your agenda here? That doesn't seem to be a part of your agenda."
+
+#### high-functioning
+
+> Do you trust your team to get the things done that they commit to?
+
+It is interesting to think about our teams and the part we play in them. Do we trust the engineers around 
+us? Can we guarantee the quality of our deliverables? Typically we want to work on teams with highly skilled
+engineers. While I have loved the environments where I was the "dumbest" in the room it is best for the team 
+and the enterprise when the teams engineers are of similar skill even if that doesn't mean of the same skill-set.
+When we have teams of disparate skill levels we tend to see more "siloization" of work. When you hear statements
+like:
+
+> Bob is our gradle and make guy, no one else understands how it works like he does.
+
+You need to pull the team away and rapidly address this issue. This is a precursor to what I call the 
+"hero-culture," which is a culture where heroics are employed by one or a few key engineers with the 
+highest skill to complete work on time. When a culture of heroics is present you should likely look 
+for alternate employment.
+
+All these problems and more can lead to another issue, the loss of faith in our team members. When we lose 
+faith in our teams there needs to be a retrospective to determine why and what it will take 
+to get that important trust back. Notice I said retrospective and not "blame-storming." Be wary of the ownership
+of the team members, a high functioning team trusts one another and owns their work.
+
+## Red Flags and Warning Signs
+
+To me the easiest metric to determine a bad culture is the rate at which "heroics" need to be employed 
+to accomplish business objectives. Refer to my previous section about "hero-culture."
+
+If you have to pull a 24 hour coding marathon twice a month to keep with business objectives you are in a bad
+culture. No amount of ping pong tables, beer on tap, or parental leave will counter the fact that your 
+organization is an anti-devops nightmare.
+
+Here is a rapid fire and somewhat sensationalist list of warning signs:
+
+- A company never having any form of layoffs
+- Large amounts of engineers with 10+ years at the company
+- Tenure related promotions (ie a promotion every two years)
+- hero culture
+- siloed team responsibilities
+- "we are like a family here" - typically code for we intent to abuse and manipulate you
+- gossip channels and grapevines - this perpetuates a lack of trust all the way up the chain
+- Fear based management tactics
+- Bad pay or high discrepancy among positional pay
+
+> **This is turning into a book so I will make a part two... or I might just write my own book, who knows**
