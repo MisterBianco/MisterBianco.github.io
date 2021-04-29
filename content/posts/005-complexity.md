@@ -5,7 +5,7 @@ description = "What is software complexity"
 date = 2021-04-29T00:00:00+00:00
 +++
 
-# Why is it software development so complex?
+# Why is software development so complex?
 
 I was asked a variation of this question by a coworker this week, and he wanted a 
 one sentence answer. 
