@@ -1,11 +1,383 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Chaos &amp; Void</title><link>https://misterbianco.github.io/posts/</link><description>Recent content in Posts on Chaos &amp; Void</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 29 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://misterbianco.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Software Complexity Pt 1</title><link>https://misterbianco.github.io/posts/complexity_1/</link><pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/complexity_1/</guid><description>Why is software development so complex? I was asked a variation of this question by a coworker this week, and he wanted a one sentence answer.
 After pondering for a bit I said:
 Marrying experience and assumptions of engineers to reality is a non-trivial task.
-I firmly believe this to be true. However, I can&amp;rsquo;t boil down the problem to such a small pithy value statement and pretend it addresses the entirety of the issue.</description></item><item><title>Culture Shifting</title><link>https://misterbianco.github.io/posts/culture/</link><pubDate>Thu, 03 Sep 2020 03:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/culture/</guid><description>The process of shifting a culture This subject has so much literature that it may seem arrogant to think myself in any way qualified to write on culture. While there are certainly smarter people leaders, thinkers and engineers than I who have tackled this issue, I hope to throw my own thoughts into the polluted pool and see what sticks.
+I firmly believe this to be true. However, I can&amp;rsquo;t boil down the problem to such a small pithy value statement and pretend it addresses the entirety of the issue.</description><content>&lt;h1 id="why-is-software-development-so-complex">Why is software development so complex?&lt;/h1>
+&lt;p>I was asked a variation of this question by a coworker this week, and he wanted a
+one sentence answer.&lt;/p>
+&lt;p>After pondering for a bit I said:&lt;/p>
+&lt;blockquote>
+&lt;p>Marrying experience and assumptions of engineers to reality is a non-trivial task.&lt;/p>
+&lt;/blockquote>
+&lt;p>I firmly believe this to be true. However, I can&amp;rsquo;t boil down the problem to such a small
+pithy value statement and pretend it addresses the entirety of the issue. I believe that
+the question is really asking &amp;ldquo;why does software become so complex?&amp;rdquo; Because, if it was
+simple we wouldn&amp;rsquo;t have problems deploying it.&lt;/p>
+&lt;p>I don&amp;rsquo;t imagine myself any sort of expert on the matter of software complexity.
+I also don&amp;rsquo;t claim to be any form of expert in software deployment or maintenance.
+However, the best part of the internet is that we can all adding our burning
+commentary on whatever subject we want. After all I can claim to be an expert in
+the field of virology after 30 minutes of googling /s.&lt;/p>
+&lt;h3 id="what-is-software-complexity">What is software complexity?&lt;/h3>
+&lt;blockquote>
+&lt;p>&amp;ldquo;Complexity&amp;rdquo; seems to be a lot like &amp;ldquo;energy&amp;rdquo;: you can transfer it from the end-user
+to one/some of the other players, but the total amount seems to remain pretty much
+constant for a given task. &amp;ndash; Ran&lt;/p>
+&lt;/blockquote>
+&lt;p>We have developed models to calculate complexity as some sort of mathematical
+function, as if complexity can be determined by tokenizing a source file. Methods like
+McCabe&amp;rsquo;s complexity model (AKA cyclomatic complexity), Halstead&amp;rsquo;s metrics, and the
+Maintainability Index. An issue with these models is that the more complex the problem,
+the more complex the solution. We can choose to use languages, tools, frameworks that
+are expressive and powerful but these models tackle an impossibly difficult problem with
+many facets. Now I am not arguing that use of these models is futile.
+We have to be vigilant in how we design systems, and I have
+a few things I watch out for when implementing solutions which I wish to discuss here.&lt;/p>
+&lt;h5 id="technical-debt">Technical debt&lt;/h5>
+&lt;p>As requirements surrounding software increases developers must begin to think
+more earnestly about how their application is architected and if concerted efforts
+are not made to ensure software complexity is addressed we develop a form of complexity
+commonly referred to as &amp;ldquo;technical debt.&amp;rdquo; Ward Cunningham, who coined the term Technical Debt,
+stated:&lt;/p>
+&lt;blockquote>
+&lt;p>&amp;ldquo;Shipping first-time code is like going into debt. A little debt speeds development so
+long as it is paid back promptly with a rewrite. Objects make the cost of this transaction
+tolerable. The danger occurs when the debt is not repaid. Every minute spent on
+not-quite-right code counts as interest on that debt. Entire engineering organizations can be
+brought to a stand-still under the debt load of an unconsolidated implementation, object-oriented
+or otherwise.&amp;rdquo;&lt;/p>
+&lt;/blockquote>
+&lt;p>Look no further than LinkedIn, in an effort to get to market quickly sacrifices in quality were made.
+Shortcuts that were never revisited and soon they were at a point that no product could be made
+by developers without a high degree of stress that business systems would collapse. New feature
+development would be frozen, and an initiative by the name project InVersion (clever) was started.
+This project was a two-month freeze on new features while portions of their stack were more or less
+rebuilt. Two months to address technical debt is a serious problem for any organization especially
+when competitors are on your heels.&lt;/p>
+&lt;p>We have developed methods and practices over the years to control technical debt. Each organization
+and by extension their subunits, should find what works for them. I have found that taking Fridays
+as a day to pay back debt is a hugely beneficial exercise for nearly all organizations I have worked
+with.&lt;/p>
+&lt;h5 id="readability">Readability&lt;/h5>
+&lt;p>Beyond just technical debt there are other metrics that contribute to complexity. For example;
+general readability which includes convention, formatting, and style. Every organization should
+come to agreement on certain conventions possibly even leaving it up to a tool to do the formatting
+and styling for them. In python, we have a style guide called pep-8 which can be automatically applied
+by editors or IDEs and we can leverage opinionated tools like &lt;a href="https://github.com/psf/black">black&lt;/a>.
+The programming language Go actually (mostly) enforces their conventions at compile time which
+eliminates any arguing amongst team members or the need for additional tooling.&lt;/p>
+&lt;p>Picking proper names for variables, functions, and the like are very important. No developer can
+hope to recall what a poorly named &lt;code>x&lt;/code> variable is for after not touching the codebase for a week.
+Similarly, we need to be succinct and expressive which is an extremely difficult task. We often joke
+that the hardest problem is naming our variables. Just as &lt;code>x&lt;/code> is a bad name so too is &lt;code>iterator_variable&lt;/code>
+in place of the (customary) &lt;code>i&lt;/code> we often find in for-loops. Naming is an art and counts very strongly
+when we consider readability.&lt;/p>
+&lt;p>My note on convention, the purpose of mastering any convention or rule is to know when to violate it.&lt;/p>
+&lt;h6 id="engineering">Engineering&lt;/h6>
+&lt;p>Over-engineering, or its inverse, under-engineering is the issue of not applying the
+appropriate amount or engineering to a solution.&lt;/p>
+&lt;p>I firmly believe that every developer has come across code like the following:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>(x: int, y: int) &lt;span style="color:#f92672">-&amp;gt;&lt;/span> int:
+&lt;span style="color:#e6db74">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;span style="color:#e6db74"> Adds two integers
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> @param: x int
+&lt;/span>&lt;span style="color:#e6db74"> @param: y int
+&lt;/span>&lt;span style="color:#e6db74"> @return int
+&lt;/span>&lt;span style="color:#e6db74"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;span style="color:#66d9ef">return&lt;/span> x &lt;span style="color:#f92672">+&lt;/span> y
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Almost everyone would agree the &amp;ldquo;complexity&amp;rdquo; of this code is low. The readability is
+relatively high. However, the code is over-engineered for the problem it is trying to solve,
+and the comment on the function is useless. Engineers, especially less experienced ones can easily
+complicate a solution.&lt;/p>
+&lt;h3 id="closing">Closing&lt;/h3>
+&lt;p>I feel this article is waxing long. I will do a second post on the matter and let this end where it is.&lt;/p></content></item><item><title>Culture Shifting</title><link>https://misterbianco.github.io/posts/culture/</link><pubDate>Thu, 03 Sep 2020 03:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/culture/</guid><description>The process of shifting a culture This subject has so much literature that it may seem arrogant to think myself in any way qualified to write on culture. While there are certainly smarter people leaders, thinkers and engineers than I who have tackled this issue, I hope to throw my own thoughts into the polluted pool and see what sticks.
 Entering the realm of opinion
-Identifying the current culture I have worked at different outfits that have each spoken of their culture using pithy and abstract values like &amp;ldquo;honesty&amp;rdquo;, &amp;ldquo;courage&amp;rdquo;, &amp;ldquo;integrity&amp;rdquo; and while I am glad a C level executive is pleased with his work defining his companies 5-13 core principles/values/belief etc.</description></item><item><title>Docs as code</title><link>https://misterbianco.github.io/posts/docs/</link><pubDate>Thu, 03 Sep 2020 02:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/docs/</guid><description>Prologue If you haven&amp;rsquo;t read my previous article about wikis you can do so here
+Identifying the current culture I have worked at different outfits that have each spoken of their culture using pithy and abstract values like &amp;ldquo;honesty&amp;rdquo;, &amp;ldquo;courage&amp;rdquo;, &amp;ldquo;integrity&amp;rdquo; and while I am glad a C level executive is pleased with his work defining his companies 5-13 core principles/values/belief etc.</description><content>&lt;h2 id="the-process-of-shifting-a-culture">The process of shifting a culture&lt;/h2>
+&lt;p>This subject has so much literature that it may seem arrogant to think
+myself in any way qualified to write on culture. While there are certainly
+smarter people leaders, thinkers and engineers than I who have tackled this
+issue, I hope to throw my own thoughts into the polluted pool and see what
+sticks.&lt;/p>
+&lt;blockquote>
+&lt;p>Entering the realm of opinion&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="identifying-the-current-culture">Identifying the current culture&lt;/h3>
+&lt;p>I have worked at different outfits that have each spoken of their culture
+using pithy and abstract values like &amp;ldquo;honesty&amp;rdquo;, &amp;ldquo;courage&amp;rdquo;, &amp;ldquo;integrity&amp;rdquo; and
+while I am glad a C level executive is pleased with his work defining his
+companies 5-13 core principles/values/belief etc. Lets address the core
+tenets that I believe to be the most important to software development.&lt;/p>
+&lt;ul>
+&lt;li>trust&lt;/li>
+&lt;li>collaboration&lt;/li>
+&lt;li>high-functioning&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>I am obviously over-simplifying and much more advanced literature might find my analysis
+comic, but these are my principles that are easy to identify and quickly indicate
+the state of a culture.&lt;/p>
+&lt;/blockquote>
+&lt;p>Identifying the current state is relatively simple and without being too
+prescriptive I have some general guidance on quick and easy tricks to discern
+your status.&lt;/p>
+&lt;p>There exists no checklist style approach, that I am aware of at least,
+that can accurately gauge a culture and trying to identify &amp;ldquo;stages&amp;rdquo; of a culture is
+a fools errand in my opinion. Often we find that we struggle with certain things
+throughout different parts of our organization. As an example, our infrastructure teams
+absolutely do not trust the developers. While this is obviously not good, when you consider
+why, which is that engineers have historically been unable to maintain their own
+infrastructure without huge amounts of help from the infra teams, they elected to remove the
+problem and centralize everything related to infrastructure. This represents a compounded
+problem. 1). We are not devops, our developers are not engineers and can not handle deployments.
+2). The teams are not high functioning, and as a result there exists a palatable lack of trust.&lt;/p>
+&lt;p>Who can blame the infrastructure team? They don&amp;rsquo;t want to be blamed for the failures of non
+high functioning teams. Thus they made the simple choice to remove the issue from the
+developers. This has been and continues to be a challenge to undo as we attempt to migrate
+to a more devops like organization.&lt;/p>
+&lt;p>Lets move on to contrasting our current station against our previously listed tenets of culture.&lt;/p>
+&lt;h4 id="trust">Trust&lt;/h4>
+&lt;blockquote>
+&lt;p>Can I do everything I need to get my job done without the aid of others with more access?&lt;/p>
+&lt;/blockquote>
+&lt;p>This isn&amp;rsquo;t necessarily meaning to ask that &amp;ldquo;if I wanted to delete our production
+database could I?&amp;rdquo; But rather, would you be able to commit code to another teams
+project if you saw something that you could improve? Do you have the ability to
+modify docs that you didn&amp;rsquo;t write that are out of date? Can you fulfill the responsibilities of
+your job as defined by your job description without a high degree of run-around?&lt;/p>
+&lt;blockquote>
+&lt;p>Can I improve the organizations docker images if they are grotesquely bloated? - me everyday&lt;/p>
+&lt;/blockquote>
+&lt;p>Chances are the answer is no, from my personal experience many companies engage in the principle
+of least privilege. These two principles are often in conflict. The principle of engineer trust
+and least privilege. My advice is to always air on the side of trust. There is a movement that
+has mostly originated from Netflix of &amp;ldquo;radical trust.&amp;rdquo; &lt;a href="https://www.youtube.com/watch?v=UTKIT6STSVM">Here&lt;/a>
+is a link to a great talk by Dave Hahn from Netflix that covers radical trust and how
+you will have detractors who may say, &amp;ldquo;But a junior engineer will break everything&amp;rdquo; and he counters that this has never happened at Netflix.&lt;/p>
+&lt;p>Whether you want to implement one, the other or something in between is up to the organization.
+Do whats right for your engineers skill levels but don&amp;rsquo;t let the processes get in the way of the
+business objectives and if you must rely on processes, &lt;strong>PLEASE MAKE THEM PUBLIC&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>&amp;ldquo;&amp;ldquo;A process is only useful if it is used and it is only used if it is widely known.&amp;rdquo; &amp;ndash; me just now.&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="collaboration">Collaboration&lt;/h4>
+&lt;blockquote>
+&lt;p>Are other engineers going to view me as a threat if I am tasked with aiding there team?&lt;/p>
+&lt;/blockquote>
+&lt;p>If you have ever tried to aid someone who refused your help, you can understand the issue
+present here. There is no simple mechanism to fix this and the crux of this issue lies in
+a certain level of distrust across team or other organizational boundaries. You may argue
+that this value is the same as the first but I argue that it is different in that you can
+trust your team but refuse to collaborate with others. Often the refusal of aid is a
+derivative of self-grandizing and arrogance of &amp;ldquo;who is this newb coming to tell me what to do
+and how to do it?&amp;rdquo; This is a somewhat common reaction to anything we view as a threat. We
+all experience it to some degree, after all we are emotional creatures. Think about when you
+have been profoundly proud of an accomplishment or success and your success has made others
+feel threatened or even more poignant, when someones success has made you feel threatened.
+It isn&amp;rsquo;t enough to be aware of this natural response, we have to actively engage to destroy it.&lt;/p>
+&lt;p>My mentor gave me great advice on dealing with these incidents. When someone or some team that
+you are tasked with working on is &amp;ldquo;dog piling&amp;rdquo; you just ask them &amp;ldquo;this has seemed to cross the
+boundaries of collaboration and is becoming too personal. I want whats best and to provide
+an optimal solution, what is your agenda here? That doesn&amp;rsquo;t seem to be a part of your agenda.&amp;rdquo;&lt;/p>
+&lt;h4 id="high-functioning">high-functioning&lt;/h4>
+&lt;blockquote>
+&lt;p>Do you trust your team to get the things done that they commit to?&lt;/p>
+&lt;/blockquote>
+&lt;p>It is interesting to think about our teams and the part we play in them. Do we trust the engineers around
+us? Can we guarantee the quality of our deliverables? Typically we want to work on teams with highly skilled
+engineers. While I have loved the environments where I was the &amp;ldquo;dumbest&amp;rdquo; in the room it is best for the team
+and the enterprise when the teams engineers are of similar skill even if that doesn&amp;rsquo;t mean of the same skill-set.
+When we have teams of disparate skill levels we tend to see more &amp;ldquo;siloization&amp;rdquo; of work. When you hear statements
+like:&lt;/p>
+&lt;blockquote>
+&lt;p>Bob is our gradle and make guy, no one else understands how it works like he does.&lt;/p>
+&lt;/blockquote>
+&lt;p>You need to pull the team away and rapidly address this issue. This is a precursor to what I call the
+&amp;ldquo;hero-culture,&amp;rdquo; which is a culture where heroics are employed by one or a few key engineers with the
+highest skill to complete work on time. When a culture of heroics is present and encouraged you should likely look
+for alternate employment.&lt;/p>
+&lt;p>All these problems and more can lead to another issue, the loss of faith in our team members. When we lose
+faith in our teams there needs to be a retrospective to determine why and what it will take
+to get that important trust back. Notice I said retrospective and not &amp;ldquo;blame-storming.&amp;rdquo; Be wary of the ownership
+of the team members, a high functioning team trusts one another and owns their work.&lt;/p>
+&lt;h2 id="red-flags-and-warning-signs">Red Flags and Warning Signs&lt;/h2>
+&lt;p>To me the easiest metric to determine a bad culture is the rate at which &amp;ldquo;heroics&amp;rdquo; need to be employed
+to accomplish business objectives. Refer to my previous section about &amp;ldquo;hero-culture.&amp;rdquo;&lt;/p>
+&lt;p>If you have to pull a 24 hour coding marathon twice a month to keep with business objectives you are in a bad
+culture. No amount of ping pong tables, beer on tap, or parental leave will counter the fact that your
+organization is an anti-devops nightmare.&lt;/p>
+&lt;p>Here is a rapid fire and somewhat sensationalist list of warning signs:&lt;/p>
+&lt;ul>
+&lt;li>A company never having any form of layoffs&lt;/li>
+&lt;li>Large amounts of engineers with 10+ years at the company&lt;/li>
+&lt;li>Tenure related promotions (ie a promotion every two years)&lt;/li>
+&lt;li>hero culture&lt;/li>
+&lt;li>siloed team responsibilities&lt;/li>
+&lt;li>&amp;ldquo;we are like a family here&amp;rdquo; - typically code for we intend to abuse and manipulate you&lt;/li>
+&lt;li>gossip channels and grapevines - this perpetuates a lack of trust all the way up the chain&lt;/li>
+&lt;li>Fear based management tactics&lt;/li>
+&lt;li>Bad pay or high discrepancy among positional pay&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>This is turning into a book so I will make a part two&amp;hellip; or I might just write my own book, who knows&lt;/strong>&lt;/p>
+&lt;/blockquote></content></item><item><title>Docs as code</title><link>https://misterbianco.github.io/posts/docs/</link><pubDate>Thu, 03 Sep 2020 02:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/docs/</guid><description>Prologue If you haven&amp;rsquo;t read my previous article about wikis you can do so here
 Documentation as code There is hopefully a fairly obvious pattern in my posts, I am a religious believer in everything as code. This is just the next installation in that series.
-Documentation as code is the idea that documentation should be kept close to the code and highly visible. If you want to generate documentation for a project you can use a documentation generation tool provided by the language like nim&amp;rsquo;s nimdoc tool, pythons mkdoc or sphinx, and there are others or you can use a static site generator like hugo or zola.</description></item><item><title>Wikis aren't for humans</title><link>https://misterbianco.github.io/posts/wiki/</link><pubDate>Thu, 03 Sep 2020 01:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/wiki/</guid><description>Wiki&amp;rsquo;s where knowledge goes to die I work at a company that makes use of confluent for wiki articles and I get told a lot when I ask questions that I need to &amp;ldquo;go read the wiki.&amp;rdquo; Which causes a sense of dread because when I search for information in the wiki I get the following:
+Documentation as code is the idea that documentation should be kept close to the code and highly visible. If you want to generate documentation for a project you can use a documentation generation tool provided by the language like nim&amp;rsquo;s nimdoc tool, pythons mkdoc or sphinx, and there are others or you can use a static site generator like hugo or zola.</description><content>&lt;h2 id="prologue">Prologue&lt;/h2>
+&lt;p>If you haven&amp;rsquo;t read my previous article about wikis you can do so &lt;a href="https://misterbianco.github.io/posts/wiki">here&lt;/a>&lt;/p>
+&lt;h2 id="documentation-as-code">Documentation as code&lt;/h2>
+&lt;p>There is hopefully a fairly obvious pattern in my posts, I am a religious believer in everything
+as code. This is just the next installation in that series.&lt;/p>
+&lt;p>Documentation as code is the idea that documentation should be kept close to the code and highly
+visible. If you want to generate documentation for a project you can use a documentation generation
+tool provided by the language like &lt;a href="https://nim-lang.org">nim&amp;rsquo;s&lt;/a> nimdoc tool, pythons mkdoc or sphinx,
+and there are others or you can use a static site generator like &lt;a href="https://gohugo.io/">hugo&lt;/a> or
+&lt;a href="https://www.getzola.org/">zola&lt;/a>.&lt;/p>
+&lt;blockquote>
+&lt;p>This site uses hugo but zola is an equally great project.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="benefits">Benefits&lt;/h2>
+&lt;p>You can now create processes around documentation such as blocking merging if docs arent updated.&lt;/p>
+&lt;blockquote>
+&lt;p>We have a github action that labels merge requests that contain changes to docs and assign people
+who understand our docs best, like our team leads.&lt;/p>
+&lt;/blockquote>
+&lt;p>Another benefit is if you ever have a technical writer they have the benefit of docs being close to
+the code. Not hidden in some forsaken wiki.&lt;/p>
+&lt;p>And my final benefit is that docs are just another deployable. Ideally, there would be some mechanism
+that when a change is made to documentation, the documentation is rebuilt and deployed. An easy
+deployment mechanism may be to have a github action that deploys your docs to a gh-pages branch.
+Either way, it should be automated and have its own deployments.&lt;/p>
+&lt;h2 id="documentation-as-an-artifact">Documentation as an artifact&lt;/h2>
+&lt;p>when the organization is at a point where it is able or when you are building documentation for api&amp;rsquo;s
+it becomes imperative that your docs be versioned. I would make the case that a mechanism exists so that
+when your code is deployed so to is your documentation in away that is versioned and immutable.&lt;/p>
+&lt;ul>
+&lt;li>You could for example do a tagged release from the gh-pages branch.&lt;/li>
+&lt;li>Or save these docs in a versioned s3 bucket.&lt;/li>
+&lt;/ul></content></item><item><title>Wikis aren't for humans</title><link>https://misterbianco.github.io/posts/wiki/</link><pubDate>Thu, 03 Sep 2020 01:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/wiki/</guid><description>Wiki&amp;rsquo;s where knowledge goes to die I work at a company that makes use of confluent for wiki articles and I get told a lot when I ask questions that I need to &amp;ldquo;go read the wiki.&amp;rdquo; Which causes a sense of dread because when I search for information in the wiki I get the following:
 Search: pipeline webhook token Results:
-ngp pipelines ngp fargate pipelines ngp v2 pipelines ngp pipeline - other pipelines in aws monorepo pipelines pipelines for polyrepos sonarqube in a monorepo inside a polyrepo in a mini repo in space Which of these could possibly be the correct article?</description></item><item><title>Bringing ADR's to my company</title><link>https://misterbianco.github.io/posts/adr/</link><pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/adr/</guid><description>Bringing ADR&amp;rsquo;s to WGU Firstly, the context necessary to understand this post and the benefits of ADR&amp;rsquo;s (architectural design records) can be found here.
-There are moments in every engineers career where they look at a codebase either as a newcomer or as a seasoned vet of that repo and they go, &amp;ldquo;why did we do X.&amp;rdquo; The more pervasive this issue this is the more you will benefit from ADR&amp;rsquo;s.</description></item></channel></rss>
+ngp pipelines ngp fargate pipelines ngp v2 pipelines ngp pipeline - other pipelines in aws monorepo pipelines pipelines for polyrepos sonarqube in a monorepo inside a polyrepo in a mini repo in space Which of these could possibly be the correct article?</description><content>&lt;h1 id="wikis-where-knowledge-goes-to-die">Wiki&amp;rsquo;s where knowledge goes to die&lt;/h1>
+&lt;p>I work at a company that makes use of confluent for wiki articles and
+I get told a lot when I ask questions that I need to &amp;ldquo;go read the wiki.&amp;rdquo;
+Which causes a sense of dread because when I search for information in the
+wiki I get the following:&lt;/p>
+&lt;pre>&lt;code>Search: pipeline webhook token
+&lt;/code>&lt;/pre>
+&lt;p>Results:&lt;/p>
+&lt;ul>
+&lt;li>ngp pipelines&lt;/li>
+&lt;li>ngp fargate pipelines&lt;/li>
+&lt;li>ngp v2 pipelines&lt;/li>
+&lt;li>ngp pipeline - other&lt;/li>
+&lt;li>pipelines in aws&lt;/li>
+&lt;li>monorepo pipelines&lt;/li>
+&lt;li>pipelines for polyrepos&lt;/li>
+&lt;li>sonarqube in a monorepo inside a polyrepo in a mini repo in space&lt;/li>
+&lt;/ul>
+&lt;p>Which of these could possibly be the correct article?&lt;/p>
+&lt;pre>&lt;code>The answer? None of the above because it was a private doc for one team.
+&lt;/code>&lt;/pre>
+&lt;h2 id="problems-with-wikis">Problems with wikis&lt;/h2>
+&lt;h4 id="seperation-from-code">Seperation from code&lt;/h4>
+&lt;p>Typically, I know where to find the code related to a project much more likely
+than I am to know where the wiki pages are located. Wouldn&amp;rsquo;t it just be easier
+to keep the docs close to the code?&lt;/p>
+&lt;p>Seperating knowledge or information from the source of that knowledge only creates
+gaps and serves to waste time. Funny how something meant to make a team more productive
+only serves to make the SDL slower.&lt;/p>
+&lt;h4 id="private-wikis">Private wikis&lt;/h4>
+&lt;p>I struggle to imagine a better way to create technical silos and knowledge gaps
+in an organization than to say, Team X manages Y process so they are going to hide
+everything from you.&lt;/p>
+&lt;p>This knowledge silo is a Anti-DevOps practice.&lt;/p>
+&lt;h4 id="misery">Misery&lt;/h4>
+&lt;p>You tell an engineer to go read the wiki and they can&amp;rsquo;t find the right page and now
+you have made someone feel dumb. One of my mentors tells me &amp;ldquo;we are emotional beings,&amp;rdquo;
+we need to be aware of how we make people feel.&lt;/p>
+&lt;pre>&lt;code>Out of Date docs are ACTIVELY HARMFUL
+&lt;/code>&lt;/pre>
+&lt;h4 id="writing-good-docs-are-hard">Writing good docs are hard&lt;/h4>
+&lt;p>I like the LeadDev channel and there is a talk from Beth Aitman that I really enjoy on
+&lt;a href="https://www.youtube.com/watch?v=R6zeikbTgVc">docs&lt;/a>&lt;/p>
+&lt;p>TL;DR&lt;/p>
+&lt;p>Tips:&lt;/p>
+&lt;ul>
+&lt;li>Start with what the reader needs to know&lt;/li>
+&lt;li>Write less&lt;/li>
+&lt;li>Outline first&lt;/li>
+&lt;li>Rubber ducking works for docs&lt;/li>
+&lt;li>Write readably&lt;/li>
+&lt;li>Dont write documentation for documentations sake&lt;/li>
+&lt;/ul>
+&lt;h2 id="solutions">Solutions?&lt;/h2>
+&lt;p>I am always frustrated to read a rant column that offers no suggestions or possible solutions
+so please refer to my next &lt;a href="https://misterbianco.github.io/posts/docs">article&lt;/a> to get my opinions on a solution. (Spoiler: it involves code).&lt;/p></content></item><item><title>Bringing ADR's to my company</title><link>https://misterbianco.github.io/posts/adr/</link><pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate><guid>https://misterbianco.github.io/posts/adr/</guid><description>Bringing ADR&amp;rsquo;s to WGU Firstly, the context necessary to understand this post and the benefits of ADR&amp;rsquo;s (architectural design records) can be found here.
+There are moments in every engineers career where they look at a codebase either as a newcomer or as a seasoned vet of that repo and they go, &amp;ldquo;why did we do X.&amp;rdquo; The more pervasive this issue this is the more you will benefit from ADR&amp;rsquo;s.</description><content>&lt;h1 id="bringing-adrs-to-wgu">Bringing ADR&amp;rsquo;s to WGU&lt;/h1>
+&lt;p>Firstly, the context necessary to understand this post and the benefits of
+ADR&amp;rsquo;s (architectural design records) can be found
+&lt;a href="https://github.blog/2020-08-13-why-write-adrs/">here&lt;/a>.&lt;/p>
+&lt;p>There are moments in every engineers career where they look at a codebase
+either as a newcomer or as a seasoned vet of that repo and they go, &amp;ldquo;why did
+we do X.&amp;rdquo; The more pervasive this issue this is the more you will benefit from
+ADR&amp;rsquo;s.&lt;/p>
+&lt;pre>&lt;code>&amp;quot;Why did I do the thing?&amp;quot; -- you in 12 months
+&lt;/code>&lt;/pre>
+&lt;p>An ADR is simply put a record of any design decision made in a codebase. Technically
+speaking this is meant for architectual decisions (hence the name) but as a proponent
+of if its good then you should take it too far, you can and possibly even should use ADR&amp;rsquo;s
+more extensively. Using it as a form of decision record log in your codebase can really
+eliminate the previously mentioned scenario. That new engineer, or perhaps future you
+can refer to these documents and get a sense of how decisions were made and how certain
+things came to be.&lt;/p>
+&lt;p>There are a plethora of ways to create an ADR but my suggestion is to follow this convention.&lt;/p>
+&lt;pre>&lt;code>Filename: 001-adr-sample.md
+&lt;/code>&lt;/pre>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-markdown" data-lang="markdown"># DECISION NAME
+&lt;span style="color:#75715e">## Date
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+{DATE}
+&lt;span style="color:#75715e">## Status
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+{STATUS}[accepted, proposed, rejected, deprecated]
+&lt;span style="color:#75715e">## Context
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+{CONTEXT}
+&lt;span style="color:#75715e">## Decision
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+{DECISION}
+&lt;span style="color:#75715e">## Consequences
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+{CONSEQUENCES}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="name">Name&lt;/h3>
+&lt;p>The name should be intuitive enough that it is easy to understand what the decision is.
+Short and sweet. I would caution against more than 1-2 sentences.&lt;/p>
+&lt;h3 id="status">Status&lt;/h3>
+&lt;p>The status&amp;rsquo;s of these proposals are pretty easy to understand.
+You &lt;strong>Propose&lt;/strong> a change or decision and then either &lt;strong>Accept&lt;/strong> or &lt;strong>Reject&lt;/strong> it. If something
+changes later and the decision is no longer relevant or is changed you may &lt;strong>Deprecate&lt;/strong> the
+decision.&lt;/p>
+&lt;h3 id="context">Context&lt;/h3>
+&lt;p>The context is any information that would help another developer or product manager understand
+why a particular decision was made or the information related to the decision. This section is usually
+a bit longer than the others and can be as lengthy as you would like.&lt;/p>
+&lt;pre>&lt;code>Typically, I aim for 1-2 paragraphs.
+&lt;/code>&lt;/pre>
+&lt;h3 id="decision">Decision&lt;/h3>
+&lt;p>What decision was reached. Remember not to include any &amp;ldquo;why&amp;rsquo;s&amp;rdquo; in this section. Thats for the Context section.
+This section is usually 1-3 sentences.&lt;/p>
+&lt;h3 id="consequences">Consequences&lt;/h3>
+&lt;p>This section can be &amp;ldquo;living&amp;rdquo; in that you can update this section as you discover new information.
+Not every definition of ADR&amp;rsquo;s wants to allow this mutability, but I feel this section should be especially
+in high discovery or PoC work.&lt;/p>
+&lt;hr>
+&lt;h2 id="benefits">Benefits&lt;/h2>
+&lt;p>I really like how the github develop blog puts it. The ADR&amp;rsquo;s are not for you.&lt;/p>
+&lt;p>They are for:&lt;/p>
+&lt;ul>
+&lt;li>future you&lt;/li>
+&lt;li>your peers&lt;/li>
+&lt;li>your future peers&lt;/li>
+&lt;/ul>
+&lt;p>I couldnt agree more. The primary benefit is reducing the &amp;ldquo;Why did we decide to put a lambda there in our infra?&amp;rdquo;&lt;/p>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>&lt;a href="https://github.com/joelparkerhenderson/architecture_decision_record">examples and more info&lt;/a>
+&lt;a href="https://www.youtube.com/watch?v=rwfXkSjFhzc">Lead dev talk&lt;/a>&lt;/p></content></item></channel></rss>
